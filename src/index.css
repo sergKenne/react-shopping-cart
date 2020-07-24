@@ -1,13 +1,164 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+*{
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+html {
+  /* font-size: 62.5%; */
+  font-size: 82%;
+
+  box-sizing: border-box;
 }
+body,
+#root {
+  height: 100vh;
+  margin: 0;
+}
+body,
+input,
+select,
+button,
+textarea {
+  font-family: Montserrat, Helvetica, Arial, sans-serif;
+  font-size: 1.4rem;
+}
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  color: #ff8000;
+}
+
+#App {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  flex: 0 1 5rem;
+  background-color: #203040;
+  color: #ffffff;
+  padding: 0.5rem;
+}
+
+main {
+  flex: 1 1 auto;
+}
+
+footer {
+  
+  flex: 0 1 5rem;
+  background-color: #203040;
+  color: #ffffff;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 5rem;
+
+  
+  align-items: center;
+}
+
+.header a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.footer {
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .5rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.main {
+  /* flex: 1 1 auto; */
+  flex: 3 60rem;
+  /* border: 2px yellow solid; */
+}
+
+.sidebar {
+  /* flex: 0 0 400px; */
+  flex: 1 20rem;
+  /* border: 2px solid red; */
+  padding-left: 1rem;
+}
+
+/* products */
+
+.products {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.products li {
+  flex: 1 1 22rem;
+  padding: .7rem;
+  margin: .7rem;
+  height: 38rem;
+  /* border: 1px solid  */
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product img {
+  max-width: 100%;
+  height: 360px;
+}
+
+.product p {
+  font-size: 1.4rem;
+}
+
+.product-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-body span {
+  font-size: 1.6rem;
+  font-weight: bold;
+  padding-left: 3rem;
+}
+
+.button {
+  padding: .7rem 1rem;
+  border: 0.1rem #c0c0c0 solid;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+.button:hover {
+  border: 0.1rem #808080 solid;
+}
+.button.primary {
+  background-color: #f0c040;
+}
+
+
+
+

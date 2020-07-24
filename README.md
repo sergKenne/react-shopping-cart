@@ -1,4 +1,3 @@
 # build the shopping cart 
 
-1 step
-productsList component
+# Step 1: Create Shopping cart  react application

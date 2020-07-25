@@ -3,7 +3,6 @@ import formatCurrency from '../util'
 
 class Products extends Component {
 
-
     render() {
         //console.log(this.props.products)
         return (

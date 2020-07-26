@@ -165,10 +165,72 @@ footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border-bottom: 1px solid #808080;
+  border-bottom: 0.1rem #c0c0c0 solid;
   margin: 1rem;
   padding: 1.5rem 0;
 }
+
+.filter > div {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+/* cart */
+.cart {
+  margin: 1rem;
+  padding: 1.5rem 0;
+  display: flex;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.cart-header {
+  border-bottom: 0.1rem #c0c0c0 solid;
+  font-size: 1.7rem;
+}
+
+.cart-items {
+  padding: 0;
+  width: 100%;
+  list-style-type: none;
+}
+
+.cart-top {
+  display: flex;
+  
+}
+
+.cart-items img {
+  width: 4.5rem;
+  padding-right: .5rem;
+}
+
+.cart-items li {
+  margin-bottom: 1.3rem;
+  font-size: 1.3rem;
+}
+
+.right {
+  text-align: right;
+}
+
+.right button {
+  font-size: 1.2rem;
+  padding: .3rem 1rem;
+}
+
+.total {
+  display: flex;
+  align-items: center;
+  padding-right: 1rem;
+}
+
+.total > div,
+.total > button {
+  flex: 1;
+  text-align: center;
+}
+
 
 
 

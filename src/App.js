@@ -78,9 +78,12 @@ class App extends Component {
         cartItems: state.cartItems.filter(item => item._id !== product._id)
       }
     }, () => localStorage.setItem("cartItems", JSON.stringify(this.state.cartItems)))
-    
-
   }
+
+  createOrder = (order) => {
+    alert(order.name);
+  }
+
 
   render() {
     return (
@@ -103,7 +106,7 @@ class App extends Component {
               <Products products={this.state.products} addToCart={this.addToCart} />
             </div>
             <div className="sidebar">
-              <Cart cartItems={this.state.cartItems} removeFromCart={this.removeFromCart} />
+              <Cart cartItems={this.state.cartItems} removeFromCart={this.removeFromCart} createOrder={this.createOrder}/>
             </div>
           </div>
         </main>

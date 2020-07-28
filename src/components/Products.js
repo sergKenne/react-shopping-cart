@@ -5,6 +5,7 @@ import Fade from 'react-reveal/Fade';
 import Modal from 'react-modal';
 import Zoom from 'react-reveal/Zoom';
 import { fetchProducts } from '../action/productAction';
+import { addToCart } from '../action/cartAction';
 
 class Products extends Component {
     constructor(props) {
@@ -104,7 +105,8 @@ class Products extends Component {
 const mapStateToProps = (state) => ({
   products: state.products.items,
   filteredItems: state.products.filteredItems,
+  
 });
 
-export default connect(mapStateToProps, {fetchProducts})(Products); 
+export default connect(mapStateToProps, {fetchProducts, addToCart})(Products); 
 

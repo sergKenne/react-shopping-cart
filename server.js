@@ -2,8 +2,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const shortid = require('shortid');
+var cors = require('cors');
+var app = express();
 
-const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 
 mongoose.connect("mongodb://localhost/shopping-card-db", {
@@ -11,6 +13,13 @@ mongoose.connect("mongodb://localhost/shopping-card-db", {
     useCreateIndex: true,
     useUnifiedTopology: true
 });
+
+const db = mongoose.connection;
+db.once("open", () => {
+    console.log("dataBase is connected")
+});
+
+
 const Product = mongoose.model("product", new mongoose.Schema({
     _id: {type: String, default: shortid.generate},
     title: String,
@@ -22,7 +31,7 @@ const Product = mongoose.model("product", new mongoose.Schema({
 
 app.get("/api/products", async (req, res) => {
     const products = await Product.find({});
-    res.send(product);
+    res.send(products);
 });
 
 app.post("/api/products", async (req, res) => {

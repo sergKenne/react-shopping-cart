@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
+import store from './store';
+import {Provider} from 'react-redux'
 import Products from './components/Products';
 import data from "./data.json"
 import Filter from './components/Filter';
 import Cart from './components/Cart';
+
 
 class App extends Component {
   constructor(props) {
@@ -87,33 +90,35 @@ class App extends Component {
 
   render() {
     return (
-      <div id="App">
-        <header>
-          <div className="header">
-            <a href="/">Shopping Cart</a>
-            <a href="/">Admin</a>
-          </div>
-        </header>
-        <main>
-          <div className="content">
-            <div className="main">
-              <Filter
-                productsLength={this.state.products.length}
-                filterProducts={this.filterProducts}
-                size={this.state.size}
-                sortProducts={this.sortProducts}
-              />
-              <Products products={this.state.products} addToCart={this.addToCart} />
+      <Provider store={store}>
+        <div id="App">
+          <header>
+            <div className="header">
+              <a href="/">Shopping Cart</a>
+              <a href="/">Admin</a>
             </div>
-            <div className="sidebar">
-              <Cart cartItems={this.state.cartItems} removeFromCart={this.removeFromCart} createOrder={this.createOrder}/>
+          </header>
+          <main>
+            <div className="content">
+              <div className="main">
+                <Filter
+                  productsLength={this.state.products.length}
+                  filterProducts={this.filterProducts}
+                  size={this.state.size}
+                  sortProducts={this.sortProducts}
+                />
+                <Products products={this.state.products} addToCart={this.addToCart} />
+              </div>
+              <div className="sidebar">
+                <Cart cartItems={this.state.cartItems} removeFromCart={this.removeFromCart} createOrder={this.createOrder}/>
+              </div>
             </div>
-          </div>
-        </main>
-        <footer>
-          <div className="footer">Footer</div>
-        </footer>
-      </div>
+          </main>
+          <footer>
+            <div className="footer">Footer</div>
+          </footer>
+        </div>
+      </Provider>
     );
   }
 }

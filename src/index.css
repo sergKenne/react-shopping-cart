@@ -282,6 +282,15 @@ input {
   z-index: 1000;
 }
 
+/* spinner */
+
+.spinner {
+  display: flex;
+  height: 90vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
 
 
 

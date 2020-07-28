@@ -27,41 +27,36 @@ class Products extends Component {
     }
 
     render() {
-       const {product} = this.state;
-       console.log(this.props);
+       const { product } = this.state;
         return (
           <div>
             <Fade bottom cascade>
-                {!this.props.products ? (
-                    <div className="spinner">
-                        <img src="../images/spinner.gif" alt="Loading..." />
-                    </div>
-                ) : (
-                   <ul className="products">
-                    {this.props.products.map((product) => {
-                        return (
-                        <li key={product._id} className="product">
-                            <a href={'#' + product._id} onClick={() => this.openModal(product)}>
-                            <img src={product.image} alt={product.title} />
-                            <p>{product.title}</p>
-                            </a>
-                            <div className="product-body">
-                            <span>{formatCurrency(product.price)}</span>
-                            <button
-                                className="button primary"
-                                onClick={() => this.props.addToCart(product)}>
-                                Add to cart
-                            </button>
-                            </div>
-                        </li>
-                        );
-                    })}
-                    </ul> 
-                )
-
-                }
-                
-              
+              {!this.props.filteredItems ? (
+                <div className="spinner">
+                  <img src="../images/spinner.gif" alt="Loading..." />
+                </div>
+              ) : (
+                <ul className="products">
+                  {this.props.filteredItems.map((product) => {
+                    return (
+                      <li key={product._id} className="product">
+                        <a href={'#' + product._id} onClick={() => this.openModal(product)}>
+                          <img src={product.image} alt={product.title} />
+                          <p>{product.title}</p>
+                        </a>
+                        <div className="product-body">
+                          <span>{formatCurrency(product.price)}</span>
+                          <button
+                            className="button primary"
+                            onClick={() => this.props.addToCart(product)}>
+                            Add to cart
+                          </button>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
             </Fade>
             {product && (
               <Modal isOpen={true} onRequestClose={this.closeModal}>
@@ -80,8 +75,7 @@ class Products extends Component {
                         Available Sizes:{' '}
                         {product.availableSizes.map((x) => (
                           <span key={x}>
-                            {' '}
-                            {'  '}
+                            {'   '}
                             <button className="button">{x}</button>
                           </span>
                         ))}
@@ -107,13 +101,10 @@ class Products extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    products: state.products.items
+const mapStateToProps = (state) => ({
+  products: state.products.items,
+  filteredItems: state.products.filteredItems,
 });
-
-// const mapDispatchToProps = dispatch => ({
-//     fecthProducts: () => dispatch(fetchProducts())
-// })
 
 export default connect(mapStateToProps, {fetchProducts})(Products); 
 

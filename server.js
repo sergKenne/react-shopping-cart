@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 const { MONGOURI } = require('./config/keys');
 const PORT = process.env.PORT || 5000;
 
-mongoose.connect(MONGOURI, {
+mongoose.connect(MONGOURI || 'mongodb://localhost/shopping-cart', {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,

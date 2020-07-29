@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 const { MONGOURI } = require('./config/keys');
 const PORT = process.env.PORT || 5000;
 
-mongoose.connect(MONGOURI || 'mongodb://localhost/shopping-cart-db', {
+mongoose.connect(MONGOURI, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
@@ -93,6 +93,9 @@ app.post("/api/orders", async (req, res) => {
 
 //server static assets if in production
 
+app.use('/', express.static(__dirname + '/build'));
+app.get('/', (req, res) => res.sendFile(__dirname + '/build/index.html'));
+
 if(process.env.NODE_ENV === "production") {
     //set static folder
     // app.use(express.static('client/build'));
@@ -101,10 +104,12 @@ if(process.env.NODE_ENV === "production") {
     // });
 
     //set static folder
-    app.use(express.static('build'));
-    app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname,  'build', 'index.html')); 
-    });
+    // app.use(express.static('build'));
+    // app.get("*", (req, res) => {
+    //     res.sendFile(path.resolve(__dirname,  'build', 'index.html')); 
+    // });
+
+
 
 
     // app.use(favicon(__dirname + '/build/favicon.ico'));
@@ -124,3 +129,15 @@ if(process.env.NODE_ENV === "production") {
 app.listen(PORT, ()=>{
     console.log(`server running on the ${PORT}`)
 })
+
+
+
+
+//  "client": "react-scripts start",
+//     "start": "node server.js",
+//     "server": "nodemon server.js",
+//     "build": "react-scripts build",
+//     "test": "react-scripts test",
+//     "eject": "react-scripts eject",
+//     "dev": "concurrently \"npm run server\" \"npm run client\"",
+//     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"

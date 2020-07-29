@@ -344,9 +344,23 @@ input {
     }
 }
 
+@media screen and (max-width: 540px) {
+    .product-details img {
+        max-width: 100%;  
+    }
+    .product-details-description {
+        font-size: 1.2rem;
+    }
+}
+
 @media screen and (max-width: 376px) {
     .filter > div {
       font-size: 1.1rem;
     }
+    .product-details-description {
+        
+        margin: 0;
+    }
+    
 }
 

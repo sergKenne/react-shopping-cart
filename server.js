@@ -21,8 +21,12 @@ mongoose.connect(MONGOURI, {
 });
 
 const db = mongoose.connection;
-db.once("open", () => {
-    console.log("dataBase is connected")
+db.once('open', () => {
+  console.log('database connected successful... ');
+});
+
+db.on('error', () => {
+  console.log('connection Failled');
 });
 
 
@@ -95,7 +99,7 @@ app.post("/api/orders", async (req, res) => {
 
 if(process.env.NODE_ENV === "production") {
     //set static folder
-    app.use(express.static('build'));
+    app.use(express.static('/build'));
     app.get("*", (req, res) => {
         res.sendFile(path.resolve(__dirname,  'build', 'index.html')); 
     });
@@ -104,7 +108,3 @@ if(process.env.NODE_ENV === "production") {
 app.listen(PORT, ()=>{
     console.log(`server running on the ${PORT}`)
 })
-
-
-
-//"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"

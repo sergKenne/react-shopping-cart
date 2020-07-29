@@ -93,8 +93,7 @@ app.post("/api/orders", async (req, res) => {
 
 //server static assets if in production
 
-app.use('/', express.static(__dirname + '/build'));
-app.get('/', (req, res) => res.sendFile(__dirname + '/build/index.html'));
+
 
 if(process.env.NODE_ENV === "production") {
     //set static folder
@@ -123,6 +122,9 @@ if(process.env.NODE_ENV === "production") {
     // res.sendFile(path.join(__dirname, 'build', 'index.html'));
     // });
 
+    app.use('/', express.static(__dirname + '/build'));
+    app.get('/', (req, res) => res.sendFile(__dirname + '/build/index.html'));
+
 
 }
 
@@ -130,14 +132,3 @@ app.listen(PORT, ()=>{
     console.log(`server running on the ${PORT}`)
 })
 
-
-
-
-//  "client": "react-scripts start",
-//     "start": "node server.js",
-//     "server": "nodemon server.js",
-//     "build": "react-scripts build",
-//     "test": "react-scripts test",
-//     "eject": "react-scripts eject",
-//     "dev": "concurrently \"npm run server\" \"npm run client\"",
-//     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"

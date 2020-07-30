@@ -1,33 +1,35 @@
 import axios from 'axios';
 import { FETCH_PRODUCTS, FILTER_PRODUCTS_BY_SIZE, ORDER_PRODUCTS_BY_PRICE } from "../types";
 
-// export const fetchProducts = () => async (dispatch) => {
-//     const res = await fetch('http://localhost:5000/api/products');
-//     const data = await res.json();
-//     // console.log(data);
-//     dispatch({
-//         type: FETCH_PRODUCTS,
-//         payload: data,
-//     });
-// };
+export const fetchProducts = () => async (dispatch) => {
 
-
-
-export const fetchProducts = () => (dispatch) => {
-
-  axios.get('http://localhost:5000/api/products').then((res) => {
-
-  setTimeout(() => {
-
-    dispatch({
-      type: FETCH_PRODUCTS,
-      payload: res.data,
-    });
-
-  },2000)
+  try {
+      const res = await fetch('http://localhost:5000/api/products');
+      const data = await res.json();
+      console.log(data);
+      dispatch({
+          type: FETCH_PRODUCTS,
+          payload: data,
+      });
+  } catch(err) {
+      console.log({message: err.message});
+  }
     
-  });
 };
+
+
+
+// export const fetchProducts = () => (dispatch) => {
+
+//   axios.get('http://localhost:5000/api/products').then((res) => {
+
+//     dispatch({
+//       type: FETCH_PRODUCTS,
+//       payload: res.data,
+//     });
+
+//   });
+// };
 
 
 

@@ -1,11 +1,8 @@
 const express = require('express');
-//const favicon = require('express-favicon');
 const path = require('path');
-
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const shortid = require('shortid');
-var cors = require('cors');
+const cors = require('cors');
 var app = express();
 
 app.use(cors());
@@ -31,82 +28,11 @@ db.on('error', () => {
 });
 
 
-const Product = mongoose.model("product", new mongoose.Schema({
-    _id: {type: String, default: shortid.generate},
-    title: String,
-    image: String,
-    description: String,
-    price: Number,
-    availableSizes: [String],
-}));
+const productRoute = require("./routes/product")
+app.use("/api/products", productRoute);
 
-
-
-
-app.get("/", async (req, res) => {
-    const products = await Product.find({});
-    res.status(200).json(products);
-    //res.send(products);
-    //res.send({success: true});
-});
-
-// app.get('/api/products', async (req, res) => {
-//   try {
-//     const products = await Product.find({});
-//     if (!products) throw error('no products');
-//     res.status(200).json(products);
-//   } catch (err) {
-//     res.status(400).json({ message: err.message });
-//   }
-// });
-
-app.post("/api/products", async (req, res) => {
-    const newProduct = new Product(req.body);
-    const savedProduct = await newProduct.save();
-    res.send(savedProduct);
-});
-
-app.delete("/api/products/:id", async (req, res) => {
-    const deletedProduct = await Product.findByIdAndDelete(req.params.id);
-    res.send(deletedProduct);
-})
-
-const Order = mongoose.model("order", new mongoose.Schema(
-    {
-        _id: { type: String, default: shortid.generate},
-        email: String,
-        name: String,
-        address: String,
-        total: Number,
-        cartItems: [
-            {
-                _id: String,
-                title: String,
-                price: Number,
-                count: Number,
-            }
-        ],
-    },
-    {
-        timestamps: true,
-    }
-  )
-);
-
-app.post("/api/orders", async (req, res) => {
-    if(
-        !req.body.name ||
-        !req.body.email ||
-        !req.body.address ||
-        !req.body.total ||
-        !req.body.cartItems 
-    ) {
-        return res.send({message: "Data is required"})
-    }
-
-    const order = await Order(req.body).save();
-    res.send(order);
-});
+const orderRoute = require('./routes/order');
+app.use('/api/orders', orderRoute);
 
 //server static assets if in production
 

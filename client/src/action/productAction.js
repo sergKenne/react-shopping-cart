@@ -1,10 +1,10 @@
-import axios from 'axios';
+//import axios from 'axios';
 import { FETCH_PRODUCTS, FILTER_PRODUCTS_BY_SIZE, ORDER_PRODUCTS_BY_PRICE } from "../types";
 
 export const fetchProducts = () => async (dispatch) => {
 
   try {
-      const res = await fetch('/');
+      const res = await fetch('http://localhost:5000/');
       const data = await res.json();
       console.log(data);
       dispatch({

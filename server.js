@@ -40,21 +40,30 @@ const Product = mongoose.model("product", new mongoose.Schema({
 }));
 
 
+app.get('/api/products',  async (req, res) => {
+
+  const products = await Product.find({});
+  
+  setTimeout(() => {
+    res.send(products);
+  }, 10000);
+});
+
 
 // app.get("/api/products", async (req, res) => {
 //     const products = await Product.find({});
 //     res.send(products);
 // });
 
-app.get('/api/products', async (req, res) => {
-  try {
-    const products = await Product.find({});
-    if (!products) throw error('no products');
-    res.status(200).json(products);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-});
+// app.get('/api/products', async (req, res) => {
+//   try {
+//     const products = await Product.find({});
+//     if (!products) throw error('no products');
+//     res.status(200).json(products);
+//   } catch (err) {
+//     res.status(400).json({ message: err.message });
+//   }
+// });
 
 app.post("/api/products", async (req, res) => {
     const newProduct = new Product(req.body);

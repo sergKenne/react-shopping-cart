@@ -22,34 +22,6 @@ export const fetchProducts = () => (dispatch) => {
 };
 
 
-
-
-
-// async functionName() {
-//   let response = () => {
-//     return new Promise(function(resolve, reject) {
-//       fetch('http://xxxxx/WebServiceTest/service.svc?wsdl/GetItems', {
-//         params: {
-//           Number: "100",
-//           Id: "101",
-//           userName: "11",
-//           credential: "Test"
-//         }
-//       }).then(response => {
-//         resolve(response);
-//       });
-//     });
-//   };
-//   let responseData = await response();
-//   console.log(responseData.data);
-// }
-
-
-
-
-
-
-
 export const filterProducts = (products, size) => (dispatch) => {
   dispatch({
     type: FILTER_PRODUCTS_BY_SIZE,

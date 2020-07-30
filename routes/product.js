@@ -24,7 +24,6 @@ router.get("/:id", async (req, res) => {
     }
 })
 
-
 router.post('/', async (req, res) => {
   const newProduct = new Product(req.body);
   const savedProduct = await newProduct.save();
@@ -35,6 +34,5 @@ router.delete('/:id', async (req, res) => {
   const deletedProduct = await Product.findByIdAndDelete(req.params.id);
   res.send(deletedProduct);
 });
-
 
 module.exports = router;

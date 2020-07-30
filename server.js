@@ -27,7 +27,6 @@ db.on('error', () => {
   console.log('connection Failled');
 });
 
-
 const productRoute = require("./routes/product")
 app.use("/api/products", productRoute);
 
@@ -35,7 +34,6 @@ const orderRoute = require('./routes/order');
 app.use('/api/orders', orderRoute);
 
 //server static assets if in production
-
 if(process.env.NODE_ENV === "production") {
     //set static folder
     app.use(express.static('client/build'));

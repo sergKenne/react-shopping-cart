@@ -12,14 +12,71 @@ import { FETCH_PRODUCTS, FILTER_PRODUCTS_BY_SIZE, ORDER_PRODUCTS_BY_PRICE } from
 // };
 
 export const fetchProducts = () => async (dispatch) => {
-  const res = await axios.get('http://localhost:5000/api/products');
-  const data = await res.data;
-  // console.log(data);
-  dispatch({
-    type: FETCH_PRODUCTS,
-    payload: data,
-  });
+
+    return new Promise((resolve, reject) => {
+        fetch('http://localhost:5000/api/products')
+          .then(response => response.json())
+          .then( data => resolve(data))
+    }).then( data => {
+        dispatch({
+            type: FETCH_PRODUCTS,
+            payload: data,
+        });
+    })
+
+//   const res = await axios.get('http://localhost:5000/api/products');
+//   const data = await res.data;
+//   // console.log(data);
+//   dispatch({
+//     type: FETCH_PRODUCTS,
+//     payload: data,
+//   });
 };
+
+
+async functionName() {
+  let response = () => {
+    return new Promise(function(resolve, reject) {
+      fetch('http://xxxxx/WebServiceTest/service.svc?wsdl/GetItems', {
+        params: {
+          Number: "100",
+          Id: "101",
+          userName: "11",
+          credential: "Test"
+        }
+      }).then(response => {
+        resolve(response);
+      });
+    });
+  };
+  let responseData = await response();
+  console.log(responseData.data);
+}
+
+async functionName() {
+  let response = () => {
+    return new Promise(function(resolve, reject) {
+      fetch('http://xxxxx/WebServiceTest/service.svc?wsdl/GetItems', {
+        params: {
+          Number: "100",
+          Id: "101",
+          userName: "11",
+          credential: "Test"
+        }
+      }).then(response => {
+        resolve(response);
+      });
+    });
+  };
+  let responseData = await response();
+  console.log(responseData.data);
+}
+
+
+
+
+
+
 
 export const filterProducts = (products, size) => (dispatch) => {
   dispatch({

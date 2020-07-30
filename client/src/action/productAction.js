@@ -16,7 +16,7 @@ export const fetchProducts = () => (dispatch) => {
   axios.get('http://localhost:5000/api/products').then((res) => {
     dispatch({
       type: FETCH_PRODUCTS,
-      payload: data,
+      payload: res.data,
     });
   });
 };

@@ -16,10 +16,16 @@ import { FETCH_PRODUCTS, FILTER_PRODUCTS_BY_SIZE, ORDER_PRODUCTS_BY_PRICE } from
 export const fetchProducts = () => (dispatch) => {
 
   axios.get('http://localhost:5000/api/products').then((res) => {
+
+  setTimeout(() => {
+
     dispatch({
       type: FETCH_PRODUCTS,
       payload: res.data,
     });
+
+  },2000)
+    
   });
 };
 

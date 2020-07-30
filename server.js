@@ -10,6 +10,7 @@ var app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const { MONGOURI } = require('./config/keys');
 const PORT = process.env.PORT || 5000;
@@ -40,20 +41,12 @@ const Product = mongoose.model("product", new mongoose.Schema({
 }));
 
 
-app.get('/api/products',  async (req, res) => {
 
-  const products = await Product.find({});
-  
-  setTimeout(() => {
+
+app.get("/api/products", async (req, res) => {
+    const products = await Product.find({});
     res.send(products);
-  }, 10000);
 });
-
-
-// app.get("/api/products", async (req, res) => {
-//     const products = await Product.find({});
-//     res.send(products);
-// });
 
 // app.get('/api/products', async (req, res) => {
 //   try {

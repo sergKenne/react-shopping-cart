@@ -43,7 +43,7 @@ const Product = mongoose.model("product", new mongoose.Schema({
 
 
 
-app.get("/api/products", async (req, res) => {
+app.get("/", async (req, res) => {
     const products = await Product.find({});
     res.send(products);
 });
